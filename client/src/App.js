@@ -1,6 +1,17 @@
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
+import { Calendar } from "./Components/Calendar";
+import { Days } from "./Components/Days";
+
 const App = () => {
   return (
-    <h1>Hello World!</h1>
+    <BrowserRouter>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/" element={<Calendar />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
