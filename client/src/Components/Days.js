@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const weeks = [0, 1, 2, 3, 4];
 
-export const Days = ({ date, day, month, year, months, days, MONTHS }) => {
+export const Days = ({ thisMonth, date, today, month, year, months, days, MONTHS }) => {
     let firstDayOfMonth = new Date(year, month - 1, 1).toString().substring(0, 3);
     let difference = 0;
 
@@ -21,6 +21,9 @@ export const Days = ({ date, day, month, year, months, days, MONTHS }) => {
     let previousMonth = MONTHS[months[month - 2]];
     let currentMonth = MONTHS[months[month - 1]];
     let CURRENTMONTH = months[month - 1];
+
+    console.log(thisMonth)
+    console.log(month)
 
     return (
         <Wrapper>
@@ -50,10 +53,26 @@ export const Days = ({ date, day, month, year, months, days, MONTHS }) => {
                         monthEndend = true
                     }
 
+                    if (dates === today && thisMonth === month) {
+                        return (
+                            <Today>
+                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                            </Today>
+                        )
+                    }
+
+                    if ( monthStarted === true && nextMonthStarted === false) {
+                        return (
+                            <DayOfTheMonth>
+                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                            </DayOfTheMonth>
+                        )
+                    }
+
                     return (
-                        <Day>
-                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}
-                        </Day>
+                        <DayOfOtherMonths>
+                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                        </DayOfOtherMonths>
                     );
                 });
             })}
@@ -70,7 +89,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Day = styled.div`
+const DayOfOtherMonths = styled.div`
   display: flex;
 
   height: 100%;
@@ -79,6 +98,32 @@ const Day = styled.div`
   padding: 10px;
 
   background: gray;
+
+  border: solid 2px black;
+`;
+
+const DayOfTheMonth = styled.div`
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 10px;
+
+  background: cyan;
+
+  border: solid 2px black;
+`;
+
+const Today = styled.div`
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 10px;
+
+  background: yellow;
 
   border: solid 2px black;
 `;

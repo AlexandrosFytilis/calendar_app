@@ -11,16 +11,17 @@ export const Content = () => {
 
   const date = new Date();
 
-  const day = date.getDate();
+  const today = date.getDate();
   const year = date.getFullYear();
+  const thisMonth = date.getMonth() + 1;
   const MONTHS = { "January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "Jully": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31 }
   const months = ["January", "Febuary", "March", "April", "May", "June", "Jully", "August", "September", "October", "November", "December"]
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
   return (
     <Wrapper>
-      <Months date={date} day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
-      <Days date={date} day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Months thisMonth={thisMonth} date={date} today={today} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Days thisMonth={thisMonth} date={date} today={today} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
     </Wrapper>
   );
 };

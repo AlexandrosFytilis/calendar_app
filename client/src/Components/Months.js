@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { MonthContext } from "./CurrentMonthContext";
 
-export const Months = ({ day, month, year, months, days, MONTHS}) => {
+export const Months = ({ thisMonth, today, month, year, months, days, MONTHS}) => {
+    const { setMonth } = useContext(MonthContext);
+
     return (
         <Wrapper> 
             <Month>
+            <button onClick={() => setMonth(month - 1)}>Previous</button>
                 {months[month -1]}
+                <button onClick={() => setMonth(month + 1)}>NEXT</button>
             </Month>
             <Week>
                 {days.map((day) => <Day>{day}</Day>)}
