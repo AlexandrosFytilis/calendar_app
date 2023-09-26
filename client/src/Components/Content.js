@@ -16,8 +16,8 @@ const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 
     return (
         <Wrapper> 
-            <Months day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS}/>
-            <Days day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS}/> 
+            <Months date={date} day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS}/>
+            <Days date={date} day={day} month={month} year={year} months={months} days={days} MONTHS={MONTHS}/> 
         </Wrapper>
     );
   };

@@ -1,58 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const weeks = [1, 2, 3, 4, 5]
+const weeks = [0, 1, 2, 3, 4];
 
-export const Days = ({ day, month, year, months, days, MONTHS}) => {
+export const Days = ({ date, day, month, year, months, days, MONTHS }) => {
+    let firstDayOfMonth = new Date(year, month - 1, 1).toString().substring(0, 3);
+    let difference = 0;
+
+    days.forEach((weekDay, index) => {
+        if (weekDay.substring(0, 3) === firstDayOfMonth) {
+            firstDayOfMonth = weekDay;
+            difference = index - 1;
+        }
+    });
+
+    let dates = 0;
+    let monthStarted = false;
+    let monthEndend = false;
+    let nextMonthStarted = false;
+    let previousMonth = MONTHS[months[month - 2]];
+    let currentMonth = MONTHS[months[month - 1]];
+    let CURRENTMONTH = months[month - 1];
+
     return (
-        <Wrapper> 
-            {
-                weeks.map(() =>
-                        days.map((day, index) => {
-                        return <Day>{`${day }`}&nbsp;{`${index}`}</Day>
-                    })
-                )
-            }
+        <Wrapper>
+            {weeks.map((week) => {
+                return days.map((day) => {
+                    if (monthStarted === true) {
+                        dates++;
+                    } else {
+                        dates = previousMonth - difference
+                        difference--
+                        CURRENTMONTH = months[month - 2];
+                    }
+
+                    if (monthEndend === true && nextMonthStarted === false) {
+                        dates = 1
+                        nextMonthStarted = true
+                        CURRENTMONTH = months[month];
+                    }
+
+                    if (week === 0 && day === firstDayOfMonth && monthStarted === false) {
+                        dates = 1;
+                        monthStarted = true;
+                        CURRENTMONTH = months[month - 1];
+                    }
+
+                    if (dates === currentMonth && monthStarted === true) {
+                        monthEndend = true
+                    }
+
+                    return (
+                        <Day>
+                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}
+                        </Day>
+                    );
+                });
+            })}
         </Wrapper>
     );
-  };
+};
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 `;
 
 const Day = styled.div`
-    display: flex;
+  display: flex;
 
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 
-    padding: 10px;
+  padding: 10px;
 
-    background: gray;
+  background: gray;
 
-    border: solid 2px black;
-`
-
-/*const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
-
-export const Days = ({ day, month, year, months, days, MONTHS}) => {
-    return (
-        <Wrapper> 
-            {
-                numbers.map((day) => {
-                    let weekDay = 0
-                    if (day === 0) {
-                        weekDay = "Sunday"
-                    }
-                    return <Day>{`${day}`}&nbsp;{`${weekDay}`}</Day>
-                })
-            }
-        </Wrapper>
-    );
-  };*/
+  border: solid 2px black;
+`;
