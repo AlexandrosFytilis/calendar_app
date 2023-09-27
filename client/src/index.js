@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import CurrentMonthContext from './Components/CurrentMonthContext';
+import CurrentDateContext from './Components/CurrentDateContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CurrentMonthContext>
+    <CurrentDateContext>
         <App />
-    </CurrentMonthContext>
+    </CurrentDateContext>
   </React.StrictMode>
 );

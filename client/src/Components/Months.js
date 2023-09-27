@@ -1,24 +1,40 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MonthContext } from "./CurrentMonthContext";
+import { DateContext } from "./CurrentDateContext";
 
-export const Months = ({ thisMonth, today, month, year, months, days, MONTHS}) => {
-    const { setMonth } = useContext(MonthContext);
+export const Months = ({ thisMonth, today, month, thisYear, year, months, days, MONTHS }) => {
+    const { setMonth, setYear } = useContext(DateContext);
 
     return (
-        <Wrapper> 
+        <Wrapper>
             <Month>
-            <button onClick={() => setMonth(month - 1)}>Previous</button>
-                {months[month -1]}
-                <button onClick={() => setMonth(month + 1)}>NEXT</button>
+                <button onClick={() => {
+                    if (month === 1) {
+                        setMonth(12)
+                        setYear(year - 1)
+                    } else {
+                        setMonth(month - 1)
+                    }
+                }
+                }>Previous</button>
+                {months[month - 1]}{year}
+                <button onClick={() => {
+                    if (month === 12) {
+                        setMonth(1)
+                        setYear(year + 1)
+                    } else {
+                        setMonth(month + 1)
+                    }
+                }
+                }>NEXT</button>
             </Month>
             <Week>
                 {days.map((day) => <Day>{day}</Day>)}
             </Week>
         </Wrapper>
     );
-  };
-  
+};
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

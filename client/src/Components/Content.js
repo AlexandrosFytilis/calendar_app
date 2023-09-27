@@ -2,26 +2,26 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Months } from "./Months";
 import { Days } from "./Days";
-import { MonthContext } from "./CurrentMonthContext";
+import { DateContext } from "./CurrentDateContext";
 
 
 export const Content = () => {
 
-  const { month } = useContext(MonthContext);
+  const { month, year } = useContext(DateContext);
 
   const date = new Date();
 
   const today = date.getDate();
-  const year = date.getFullYear();
+  const thisYear = date.getFullYear();
   const thisMonth = date.getMonth() + 1;
-  const MONTHS = { "January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "Jully": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31 }
-  const months = ["January", "Febuary", "March", "April", "May", "June", "Jully", "August", "September", "October", "November", "December"]
+  const MONTHS = { "January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "July": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31 }
+  const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
   return (
     <Wrapper>
-      <Months thisMonth={thisMonth} date={date} today={today} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
-      <Days thisMonth={thisMonth} date={date} today={today} month={month} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Months thisMonth={thisMonth} date={date} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Days thisMonth={thisMonth} date={date} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
     </Wrapper>
   );
 };

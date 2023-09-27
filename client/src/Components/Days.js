@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const weeks = [0, 1, 2, 3, 4];
 
-export const Days = ({ thisMonth, date, today, month, year, months, days, MONTHS }) => {
-    let firstDayOfMonth = new Date(year, month - 1, 1).toString().substring(0, 3);
+export const Days = ({ thisMonth, date, today, month, year, thisYear, months, days, MONTHS }) => {
+    let firstDayOfMonth = new Date(thisYear, month - 1, 1).toString().substring(0, 3);
     let difference = 0;
 
     days.forEach((weekDay, index) => {
@@ -21,9 +21,6 @@ export const Days = ({ thisMonth, date, today, month, year, months, days, MONTHS
     let previousMonth = MONTHS[months[month - 2]];
     let currentMonth = MONTHS[months[month - 1]];
     let CURRENTMONTH = months[month - 1];
-
-    console.log(thisMonth)
-    console.log(month)
 
     return (
         <Wrapper>
@@ -53,10 +50,10 @@ export const Days = ({ thisMonth, date, today, month, year, months, days, MONTHS
                         monthEndend = true
                     }
 
-                    if (dates === today && thisMonth === month) {
+                    if (dates === today && thisMonth === month && monthStarted == true && year === thisYear) {
                         return (
                             <Today>
-                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
                             </Today>
                         )
                     }
@@ -64,14 +61,14 @@ export const Days = ({ thisMonth, date, today, month, year, months, days, MONTHS
                     if ( monthStarted === true && nextMonthStarted === false) {
                         return (
                             <DayOfTheMonth>
-                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
                             </DayOfTheMonth>
                         )
                     }
 
                     return (
                         <DayOfOtherMonths>
-                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{year}
+                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
                         </DayOfOtherMonths>
                     );
                 });
