@@ -27,6 +27,15 @@ export const Months = ({ thisMonth, today, month, thisYear, year, months, days, 
                     }
                 }
                 }>NEXT</button>
+                {month === thisMonth ? (
+                    <></>
+                ) : (
+                    <button onClick={() => {
+                        setMonth(thisMonth)
+                        setYear(thisYear)
+                    }
+                    }>RETURN</button>
+                )}
             </Month>
             <Week>
                 {days.map((day) => <Day>{day}</Day>)}
