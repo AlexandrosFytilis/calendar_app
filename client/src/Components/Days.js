@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const weeks = [0, 1, 2, 3, 4];
+const weeks = [1, 2, 3, 4, 5];
 
 export const Days = ({ thisMonth, date, today, month, year, thisYear, months, days, MONTHS }) => {
+
     let firstDayOfMonth = new Date(thisYear, month - 1, 1).toString().substring(0, 3);
     let difference = 0;
 
@@ -21,6 +22,9 @@ export const Days = ({ thisMonth, date, today, month, year, thisYear, months, da
     let previousMonth = MONTHS[months[month - 2]];
     let currentMonth = MONTHS[months[month - 1]];
     let CURRENTMONTH = months[month - 1];
+    let largeMonth = false;
+
+    console.log(MONTHS[CURRENTMONTH])
 
     return (
         <Wrapper>
@@ -40,10 +44,28 @@ export const Days = ({ thisMonth, date, today, month, year, thisYear, months, da
                         CURRENTMONTH = months[month];
                     }
 
-                    if (week === 0 && day === firstDayOfMonth && monthStarted === false) {
+                    if (week === 1 && day === firstDayOfMonth && monthStarted === false) {
                         dates = 1;
                         monthStarted = true;
                         CURRENTMONTH = months[month - 1];
+
+                        if (day === "Saturday" && MONTHS[CURRENTMONTH] === 30) {
+                            largeMonth = true
+                        } else if (day === "Saturday" && MONTHS[CURRENTMONTH] === 31) {
+                            largeMonth = true
+                        } else if (day === "Friday" && MONTHS[CURRENTMONTH] === 31) {
+                            largeMonth = true
+                        } else {
+                            largeMonth = false
+                        }
+                    }
+
+                    if (largeMonth === true && weeks.length === 5) {
+                        weeks.push(6)
+                    }
+
+                    if (largeMonth === false && weeks.length === 6) {
+                        weeks.pop()
                     }
 
                     if (dates === currentMonth && monthStarted === true) {
@@ -58,7 +80,7 @@ export const Days = ({ thisMonth, date, today, month, year, thisYear, months, da
                         )
                     }
 
-                    if ( monthStarted === true && nextMonthStarted === false) {
+                    if (monthStarted === true && nextMonthStarted === false) {
                         return (
                             <DayOfTheMonth>
                                 {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
@@ -80,7 +102,7 @@ export const Days = ({ thisMonth, date, today, month, year, thisYear, months, da
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  //grid-template-rows: repeat(5, 1fr);
 
   height: 100%;
   width: 100%;
