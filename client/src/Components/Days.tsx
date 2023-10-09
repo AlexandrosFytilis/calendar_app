@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const weeks = [1, 2, 3, 4, 5];
 
-export const Days = ({ thisMonth, date, today, month, year, thisYear, months, days, MONTHS }) => {
+export const Days = ({ thisMonth, today, month, year, thisYear, months, days, MONTHS }) => {
 
     let firstDayOfMonth = new Date(thisYear, month - 1, 1).toString().substring(0, 3);
     let difference = 0;

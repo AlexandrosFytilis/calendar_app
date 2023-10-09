@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { DateContext } from "./CurrentDateContext";
+import { DateContext } from "./CurrentDateContext.tsx";
 
 export const Months = ({ thisMonth, today, month, thisYear, year, months, days, MONTHS }) => {
     const { setMonth, setYear } = useContext(DateContext);

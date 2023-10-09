@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Content } from "./Content";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Content } from "./Content.tsx";
+import { Header } from "./Header.tsx";
+import { Footer } from "./Footer.tsx";
 
 export const Calendar = () => {
     return (

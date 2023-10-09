@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GlobalStyles from "./GlobalStyles";
-import { Calendar } from "./Components/Calendar";
-import { Days } from "./Components/Days";
+import GlobalStyles from "./GlobalStyles.tsx";
+import { Calendar } from "./Components/Calendar.tsx";
 
 const App = () => {
   return (

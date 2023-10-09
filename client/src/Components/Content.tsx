@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Months } from "./Months";
-import { Days } from "./Days";
-import { DateContext } from "./CurrentDateContext";
-
+import { Months } from "./Months.tsx";
+import { Days } from "./Days.tsx";
+import { DateContext } from "./CurrentDateContext.tsx";
 
 export const Content = () => {
 
   const { month, year } = useContext(DateContext);
 
   const date = new Date();
-
   const today = date.getDate();
   const thisYear = date.getFullYear();
   const thisMonth = date.getMonth() + 1;
@@ -20,8 +18,8 @@ export const Content = () => {
 
   return (
     <Wrapper>
-      <Months thisMonth={thisMonth} date={date} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
-      <Days thisMonth={thisMonth} date={date} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Months thisMonth={thisMonth} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
+      <Days thisMonth={thisMonth} today={today} month={month} thisYear={thisYear} year={year} months={months} days={days} MONTHS={MONTHS} />
     </Wrapper>
   );
 };
