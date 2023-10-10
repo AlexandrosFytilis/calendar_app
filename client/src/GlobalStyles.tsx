@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { COLORS } from "./colors.tsx";
 
 export default createGlobalStyle`
   :root {
@@ -81,7 +82,7 @@ input {
 }
 
 button {
-  background: green;
+  background: ${COLORS.activeColor};
 
   &:disabled {
     background: gray;

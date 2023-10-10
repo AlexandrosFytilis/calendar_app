@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { COLORS } from "../colors.tsx";
 
 const weeks = [1, 2, 3, 4, 5];
 
@@ -72,10 +73,11 @@ export const Days = ({ thisMonth, today, month, year, thisYear, months, days, MO
                         monthEndend = true
                     }
 
-                    if (dates === today && thisMonth === month && monthStarted == true && year === thisYear) {
+                    if (dates === today && thisMonth === month && monthStarted === true && year === thisYear) {
                         return (
                             <Today>
-                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
+                                <Day>{dates}</Day>
+                                <Content> {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}</Content>
                             </Today>
                         )
                     }
@@ -83,14 +85,16 @@ export const Days = ({ thisMonth, today, month, year, thisYear, months, days, MO
                     if (monthStarted === true && nextMonthStarted === false) {
                         return (
                             <DayOfTheMonth>
-                                {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
+                                <Day>{dates}</Day>
+                                <Content> {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}</Content>
                             </DayOfTheMonth>
                         )
                     }
 
                     return (
                         <DayOfOtherMonths>
-                            {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}
+                            <Day>{dates}</Day>
+                            <Content> {`${day}`}&nbsp;{`${dates}`}&nbsp;{CURRENTMONTH}&nbsp;{thisYear}</Content>
                         </DayOfOtherMonths>
                     );
                 });
@@ -110,39 +114,61 @@ const Wrapper = styled.div`
 
 const DayOfOtherMonths = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: start;
 
   height: 100%;
   width: 100%;
 
-  padding: 10px;
-
-  background: gray;
+  background: ${COLORS.disabledColor};
 
   border: solid 2px black;
 `;
 
 const DayOfTheMonth = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: start;
 
   height: 100%;
   width: 100%;
 
-  padding: 10px;
-
-  background: cyan;
+  background: ${COLORS.basicColor};
 
   border: solid 2px black;
 `;
 
 const Today = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: start;
 
   height: 100%;
   width: 100%;
 
-  padding: 10px;
-
-  background: yellow;
+  background: ${COLORS.activeColor};
 
   border: solid 2px black;
 `;
+
+const Day = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: solid black 2px;
+
+    font-weight: bold;
+
+    width: 15%;
+    height: 15%;
+`
+
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+
+    border-top: solid 2px black;
+`

@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { COLORS } from "../colors.tsx";
 
 export const Footer = () => {
     return (
         <Wrapper> 
-            FOOTER 
+            
         </Wrapper>
     );
   };
   
 const Wrapper = styled.div`
     display: flex;
-    background: blue;
+    background: ${COLORS.tertiaryColor};
 
     height: 3vh;
 `;

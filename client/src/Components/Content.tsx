@@ -27,7 +27,6 @@ export const Content = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: green;
 
   height: 90vh;
 

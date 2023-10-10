@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { DateContext } from "./CurrentDateContext.tsx";
+import { COLORS } from "../colors.tsx";
 
 export const Months = ({ thisMonth, today, month, thisYear, year, months, days, MONTHS }) => {
     const { setMonth, setYear } = useContext(DateContext);
@@ -8,7 +9,7 @@ export const Months = ({ thisMonth, today, month, thisYear, year, months, days, 
     return (
         <Wrapper>
             <Month>
-                <button onClick={() => {
+                <SwitchMonthButton onClick={() => {
                     if (month === 1) {
                         setMonth(12)
                         setYear(year - 1)
@@ -16,9 +17,9 @@ export const Months = ({ thisMonth, today, month, thisYear, year, months, days, 
                         setMonth(month - 1)
                     }
                 }
-                }>Previous</button>
-                {months[month - 1]}{year}
-                <button onClick={() => {
+                }>{`<`}</SwitchMonthButton>
+                <CalendarMonth>{months[month - 1]}&nbsp;{year}</CalendarMonth>
+                <SwitchMonthButton onClick={() => {
                     if (month === 12) {
                         setMonth(1)
                         setYear(year + 1)
@@ -26,17 +27,21 @@ export const Months = ({ thisMonth, today, month, thisYear, year, months, days, 
                         setMonth(month + 1)
                     }
                 }
-                }>NEXT</button>
-                {month === thisMonth ? (
-                    <></>
-                ) : (
-                    <button onClick={() => {
-                        setMonth(thisMonth)
-                        setYear(thisYear)
-                    }
-                    }>RETURN</button>
-                )}
+                }>{`>`}</SwitchMonthButton>
+                
             </Month>
+            <>{month === thisMonth ? (
+                    <Return></Return>
+                ) : (
+                    <Return>
+                        <ReturnButton onClick={() => {
+                            setMonth(thisMonth)
+                            setYear(thisYear)
+                        }
+                        }>RETURN</ReturnButton>
+                    </Return>
+                    
+                )}</>
             <Week>
                 {days.map((day) => <Day>{day}</Day>)}
             </Week>
@@ -49,14 +54,39 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 10vh;
-  background-color: gray;
 `;
 
 const Month = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
 
-    height: 80%;
-    background: pink;
+    height: 70%;
+    background: ${COLORS.tertiaryColor};
+`
+const CalendarMonth = styled.h2`
+    width: 12%;
+`
+
+const Return = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
+
+    background: ${COLORS.tertiaryColor};
+`
+
+const ReturnButton = styled.button`
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    font-weight: bold;
+`
+
+const SwitchMonthButton = styled.button`
+    
 `
 
 const Week = styled.div`
@@ -71,7 +101,9 @@ const Day = styled.div`
     justify-content: center;
     align-items: center;
     
-    background: orange;
+    background: ${COLORS.secondaryColor};
+
+    font-weight: bold;
 
     width: 100%;
     height: 100%;
