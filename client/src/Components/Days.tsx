@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { COLORS } from "../colors.tsx";
+import { DateDataType } from "../CalendarProps.tsx";
+import { DateContext, DateContextProps } from "./CurrentDateContext.tsx";
 
 const weeks = [1, 2, 3, 4, 5];
 
-export const Days = ({ thisMonth, today, month, year, thisYear, months, days, MONTHS }) => {
+export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateDataType) => {
+    const { month, year }: DateContextProps = useContext(DateContext);
+    
 
     let firstDayOfMonth = new Date(thisYear, month - 1, 1).toString().substring(0, 3);
     let difference = 0;

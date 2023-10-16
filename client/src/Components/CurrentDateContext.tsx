@@ -1,10 +1,10 @@
 import React, { createContext, useState, ReactNode } from "react";
 
-interface DateContextProps {
-  month: Number | null,
-  setMonth: React.Dispatch<React.SetStateAction<Number | null>>,
-  year: Number | null,
-  setYear: React.Dispatch<React.SetStateAction<Number | null>>,
+export interface DateContextProps {
+  month: number | null,
+  setMonth: React.Dispatch<React.SetStateAction<number | null>>,
+  year: number | null,
+  setYear: React.Dispatch<React.SetStateAction<number | null>>,
 }
 
 export const DateContext = createContext<DateContextProps>({
@@ -21,8 +21,8 @@ interface Props {
 const CurrentDateContext = ({ children }: Props) => {
   const date = new Date();
 
-  const [month, setMonth] = useState<Number | null>(date.getMonth() + 1);
-  const [year, setYear] = useState<Number | null>(date.getFullYear());
+  const [month, setMonth] = useState<number | null>(date.getMonth() + 1);
+  const [year, setYear] = useState<number | null>(date.getFullYear());
 
   return (
     <DateContext.Provider value={{month, setMonth, year, setYear}}>

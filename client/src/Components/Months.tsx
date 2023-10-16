@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { DateContext } from "./CurrentDateContext.tsx";
 import { COLORS } from "../colors.tsx";
+import { DateDataType } from "../CalendarProps.tsx";
 
-export const Months = ({ thisMonth, today, month, thisYear, year, months, days, MONTHS }) => {
-    const { setMonth, setYear } = useContext(DateContext);
+export const Months = ({ thisMonth, thisYear, months, days, MONTHS }: DateDataType) => {
+    const { month, setMonth, year, setYear } = useContext(DateContext);
+
+    console.log(MONTHS)
 
     return (
         <Wrapper>
