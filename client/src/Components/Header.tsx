@@ -5,7 +5,7 @@ import { COLORS } from "../colors.tsx";
 export const Header = () => {
     return (
         <Wrapper> 
-            <Title>CALENDAR APP</Title>
+            <Title data-testid="header-title">CALENDAR APP</Title>
         </Wrapper>
     );
   };

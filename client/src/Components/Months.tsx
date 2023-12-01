@@ -7,12 +7,10 @@ import { DateDataType } from "../CalendarProps.tsx";
 export const Months = ({ thisMonth, thisYear, months, days, MONTHS }: DateDataType) => {
     const { month, setMonth, year, setYear } = useContext(DateContext);
 
-    console.log(MONTHS)
-
     return (
-        <Wrapper>
+        <Wrapper data-testid="month-1">
             <Month>
-                <SwitchMonthButton onClick={() => {
+                <SwitchMonthButton data-testid="previous-month-button" onClick={() => {
                     if (month === 1) {
                         setMonth(12)
                         setYear(year - 1)
@@ -21,8 +19,8 @@ export const Months = ({ thisMonth, thisYear, months, days, MONTHS }: DateDataTy
                     }
                 }
                 }>{`<`}</SwitchMonthButton>
-                <CalendarMonth>{months[month - 1]}&nbsp;{year}</CalendarMonth>
-                <SwitchMonthButton onClick={() => {
+                <CalendarMonth data-testid="displayed-month">{months[month - 1]}&nbsp;{year}</CalendarMonth>
+                <SwitchMonthButton data-testid="next-month-button" onClick={() => {
                     if (month === 12) {
                         setMonth(1)
                         setYear(year + 1)
@@ -33,11 +31,11 @@ export const Months = ({ thisMonth, thisYear, months, days, MONTHS }: DateDataTy
                 }>{`>`}</SwitchMonthButton>
                 
             </Month>
-            <>{month === thisMonth ? (
+            <>{month === thisMonth && year === thisYear? (
                     <Return></Return>
                 ) : (
                     <Return>
-                        <ReturnButton onClick={() => {
+                        <ReturnButton data-testid="return-button" onClick={() => {
                             setMonth(thisMonth)
                             setYear(thisYear)
                         }
@@ -46,7 +44,7 @@ export const Months = ({ thisMonth, thisYear, months, days, MONTHS }: DateDataTy
                     
                 )}</>
             <Week>
-                {days.map((day) => <Day>{day}</Day>)}
+                {days.map((day, index) => <Day data-testid={`weekday-${index}`} key={index}>{day}</Day>)}
             </Week>
         </Wrapper>
     );
