@@ -178,6 +178,36 @@ test(`Does March 2024 contain 6 columns (weeks)?`, () => {
   expect(dayElement).toBeInTheDocument()
 })
 
+test(`Does Febuary 2024 have the 29th day for a leap year?`, () => {
+  TODAYDATA.DAY = 21
+  TODAYDATA.YEAR = 2024
+  TODAYDATA.MONTH = 2
+  render(
+      <DateContext.Provider value={{month: 3, setMonth: jest.fn(), year: 2024, setYear: jest.fn()}}>
+        <App/>
+      </DateContext.Provider>
+    )
+    debug();
+
+  const dayElement = screen.getByTestId("week-5-29")
+  expect(dayElement).toBeInTheDocument()
+})
+
+test(`Does Febuary 2023 not have the 29th day for a non leap year?`, () => {
+  TODAYDATA.DAY = 21
+  TODAYDATA.YEAR = 2023
+  TODAYDATA.MONTH = 2
+  render(
+      <DateContext.Provider value={{month: 3, setMonth: jest.fn(), year: 2023, setYear: jest.fn()}}>
+        <App/>
+      </DateContext.Provider>
+    )
+    debug();
+
+  const dayElement = screen.getByTestId("week-5-29")
+  expect(dayElement).toBeFalsy
+})
+
 test(`Is the first day of April 2024 the 31th of March (in the calendar)?`, () => {
   TODAYDATA.DAY = 21
   TODAYDATA.YEAR = 2024
