@@ -65,6 +65,7 @@ export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateD
                         dates++;
                     } else {
                         if (CURRENTMONTH === "January") {
+                            previousMonth =  MONTHS[months[11]]
                             dates = previousMonth - difference
                             difference--
                             CURRENTMONTH = "December";
@@ -74,6 +75,8 @@ export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateD
                             CURRENTMONTH = months[month - 2]; 
                         }
                     }
+
+                    console.log(previousMonth)
 
                     if (monthEndend === true && nextMonthStarted === false && endOfTheYear === false) {
                         dates = 1
