@@ -97,7 +97,7 @@ export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateD
                         monthEndend = true
                     }
 
-                    if (dates === today && thisMonth === month && monthStarted === true && year === thisYear) {
+                    if (dates === today && thisMonth === month && monthStarted === true && year === thisYear && monthEndend === false) {
                         return (
                             <Today key={day}>
                                 <Day data-testid="today">{dates}</Day>
