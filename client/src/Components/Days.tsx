@@ -30,6 +30,12 @@ export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateD
     let CURRENTMONTH = months[month - 1];
     let largeMonth = false;
 
+    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+        MONTHS.Febuary = 29
+    } else {
+        MONTHS.Febuary = 28
+    }
+
     if (firstDayOfMonth === "Saturday" && MONTHS[CURRENTMONTH] === 30) {
         largeMonth = true
     } else if (firstDayOfMonth === "Saturday" && MONTHS[CURRENTMONTH] === 31) {
@@ -75,8 +81,6 @@ export const Days = ({ thisMonth, today, thisYear, months, days, MONTHS }: DateD
                             CURRENTMONTH = months[month - 2]; 
                         }
                     }
-
-                    console.log(previousMonth)
 
                     if (monthEndend === true && nextMonthStarted === false && endOfTheYear === false) {
                         dates = 1
