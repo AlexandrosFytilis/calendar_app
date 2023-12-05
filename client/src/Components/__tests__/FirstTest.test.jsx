@@ -193,6 +193,36 @@ test(`Is the first day of April 2024 the 31th of March (in the calendar)?`, () =
   expect(dayElement).toBeInTheDocument()
 })
 
+test(`Does January 2024 display December 31st as a previous Month date?`, () => {
+  TODAYDATA.DAY = 21
+  TODAYDATA.YEAR = 2024
+  TODAYDATA.MONTH = 1
+  render(
+      <DateContext.Provider value={{month: 1, setMonth: jest.fn(), year: 2024, setYear: jest.fn()}}>
+        <App/>
+      </DateContext.Provider>
+    )
+    debug();
+
+  const dayElement = screen.getByTestId("week-1-31")
+  expect(dayElement).toBeInTheDocument()
+})
+
+test(`Does January 2025 display December 30th as a previous Month date?`, () => {
+  TODAYDATA.DAY = 21
+  TODAYDATA.YEAR = 2025
+  TODAYDATA.MONTH = 1
+  render(
+      <DateContext.Provider value={{month: 1, setMonth: jest.fn(), year: 2025, setYear: jest.fn()}}>
+        <App/>
+      </DateContext.Provider>
+    )
+    debug();
+
+  const dayElement = screen.getByTestId("week-1-31")
+  expect(dayElement).toBeInTheDocument()
+})
+
 test(`Does the switch to previous Month button get called?`, () => {
   const handleOnClick = jest.fn();
 
